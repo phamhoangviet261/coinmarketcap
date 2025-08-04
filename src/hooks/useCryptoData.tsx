@@ -54,7 +54,7 @@ export function useCryptoData() {
       'x-cg-demo-api-key': import.meta.env.VITE_COINGECKO_DEMO_API_KEY,
     } as any;
 
-    const cryptosUrl = `${baseUrl}coins/${coinId}`;
+    const cryptosUrl = `${baseUrl}coins/${coinId}?sparkline=true`;
     axios
       .get(cryptosUrl, { headers })
       .then((response: any) => {

@@ -110,6 +110,7 @@ export type TCoinDetail = {
     atl: Record<string, number>;
     atl_change_percentage: Record<string, number>;
     atl_date: Record<string, string>;
+    sparkline_7d?: { price: number[] };
     last_updated: string;
   };
   last_updated: string;
