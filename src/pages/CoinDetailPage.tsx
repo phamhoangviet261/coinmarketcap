@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import { useCryptoData } from '@/hooks/useCryptoData';
+import type { TCoinDetail } from '@/type';
 
 export const CoinDetailPage = () => {
   const { coinId } = useParams();
@@ -17,22 +17,81 @@ export const CoinDetailPage = () => {
     return <div className="p-4">Loading...</div>;
   }
 
+  const detail = cryptosDetail as TCoinDetail;
+
   return (
-    <div className="p-4 max-w-4xl mx-auto">
+    <div className="p-4 max-w-4xl mx-auto space-y-6">
       <div className="flex items-center gap-4">
         <img
-          src={cryptosDetail.image?.large}
-          alt={cryptosDetail.name}
+          src={detail.image?.large}
+          alt={detail.name}
           className="h-16 w-16"
         />
-        <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-          {cryptosDetail.name}
-        </h1>
+        <div>
+          <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+            {detail.name}
+          </h1>
+          <p className="uppercase text-gray-500 dark:text-gray-400">
+            {detail.symbol}
+          </p>
+        </div>
       </div>
-      <p className="mt-4 text-gray-700 dark:text-gray-300">
-        Current Price: $
-        {cryptosDetail.market_data?.current_price?.usd?.toLocaleString()}
-      </p>
+
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+        <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
+          <p className="text-sm text-gray-500 dark:text-gray-400">Current Price</p>
+          <p className="mt-1 text-lg font-semibold text-gray-900 dark:text-gray-100">
+            ${detail.market_data?.current_price?.usd?.toLocaleString()}
+          </p>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
+          <p className="text-sm text-gray-500 dark:text-gray-400">Market Cap</p>
+          <p className="mt-1 text-lg font-semibold text-gray-900 dark:text-gray-100">
+            ${detail.market_data?.market_cap?.usd?.toLocaleString()}
+          </p>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
+          <p className="text-sm text-gray-500 dark:text-gray-400">24h Volume</p>
+          <p className="mt-1 text-lg font-semibold text-gray-900 dark:text-gray-100">
+            ${detail.market_data?.total_volume?.usd?.toLocaleString()}
+          </p>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
+          <p className="text-sm text-gray-500 dark:text-gray-400">24h High</p>
+          <p className="mt-1 text-lg font-semibold text-gray-900 dark:text-gray-100">
+            ${detail.market_data?.high_24h?.usd?.toLocaleString()}
+          </p>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
+          <p className="text-sm text-gray-500 dark:text-gray-400">24h Low</p>
+          <p className="mt-1 text-lg font-semibold text-gray-900 dark:text-gray-100">
+            ${detail.market_data?.low_24h?.usd?.toLocaleString()}
+          </p>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
+          <p className="text-sm text-gray-500 dark:text-gray-400">Market Cap Rank</p>
+          <p className="mt-1 text-lg font-semibold text-gray-900 dark:text-gray-100">
+            #{detail.market_cap_rank}
+          </p>
+        </div>
+      </div>
+
+      {detail.description?.en && (
+        <div>
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+            About {detail.name}
+          </h2>
+          <p
+            className="mt-2 text-sm text-gray-700 dark:text-gray-300 leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: detail.description.en }}
+          />
+        </div>
+      )}
     </div>
   );
 };
