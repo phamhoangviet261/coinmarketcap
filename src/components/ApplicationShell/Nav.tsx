@@ -21,7 +21,7 @@ export const Nav = () => {
   const overlayRef: any = useRef(null);
 
   return (
-    <nav className="pt-4 flex flex-col top-0 z-10 w-full max-w-[2000px] mx-auto">
+    <nav className="pt-4 flex flex-col top-0 z-10 w-full mx-auto">
       <NavbarOverlay ref={overlayRef} />
 
       {/* Sub Header */}

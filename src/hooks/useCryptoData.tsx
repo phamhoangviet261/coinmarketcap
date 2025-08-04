@@ -1,21 +1,25 @@
-import defaultCryptoData from "@/data/cryptoData.json";
-import defaultGlobalData from "@/data/globalData.json";
-import defaultTrendingData from "@/data/trendingData.json";
-import defaultCryptoListData from "@/data/cryptoListData.json";
+import defaultCryptoData from '@/data/cryptoData.json';
+import defaultGlobalData from '@/data/globalData.json';
+import defaultTrendingData from '@/data/trendingData.json';
+import defaultCryptoListData from '@/data/cryptoListData.json';
 
-import axios from "axios";
-import { useEffect, useState } from "react";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { TCoinDetail } from '@/type';
 
 export function useCryptoData() {
   const [cryptos, setCryptos] = useState(defaultCryptoData);
+  const [cryptosDetail, setCryptosDetail] = useState<TCoinDetail | undefined>(
+    undefined
+  );
   const [globalData, setGlobalData] = useState(defaultGlobalData.data);
   const [trendingData, setTrendingData] = useState(defaultTrendingData.coins);
   const [cryptoList, setCryptoList] = useState(defaultCryptoListData);
 
-  const baseUrl = "https://api.coingecko.com/api/v3/";
+  const baseUrl = 'https://api.coingecko.com/api/v3/';
   const headers = {
-    accept: "application/json",
-    "x-cg-demo-api-key": import.meta.env.VITE_COINGECKO_DEMO_API_KEY,
+    accept: 'application/json',
+    'x-cg-demo-api-key': import.meta.env.VITE_COINGECKO_DEMO_API_KEY,
   };
 
   function loadDefault() {
@@ -26,20 +30,38 @@ export function useCryptoData() {
   }
 
   function fetchCryptos(pageNum: number = 1) {
-    const currency = "usd";
-    const order = "market_cap_desc";
-    const perPage = "100";
-    const sparkline = "true";
-    const pricePercentage = "1h%2C24h%2C7d%2C14d%2C30d%2C200d%2C1y";
+    const currency = 'usd';
+    const order = 'market_cap_desc';
+    const perPage = '100';
+    const sparkline = 'true';
+    const pricePercentage = '1h%2C24h%2C7d%2C14d%2C30d%2C200d%2C1y';
     const cryptosUrl = `${baseUrl}coins/markets?vs_currency=${currency}&order=${order}&per_page=${perPage}&page=${pageNum}&sparkline=${sparkline}&price_change_percentage=${pricePercentage}`;
 
     axios
-      .get(cryptosUrl, { headers  })
+      .get(cryptosUrl, { headers })
       .then((response: any) => {
         setCryptos(response.data);
       })
       .catch((error: any) => {
-        console.error("Error fetching cryptos data: ", error);
+        console.error('Error fetching cryptos data: ', error);
+      });
+  }
+
+  // Function to fetch cryptos by id
+  function fetchCryptosById(coinId: string = '') {
+    const headers = {
+      accept: 'application/json',
+      'x-cg-demo-api-key': import.meta.env.VITE_COINGECKO_DEMO_API_KEY,
+    } as any;
+
+    const cryptosUrl = `${baseUrl}coins/${coinId}`;
+    axios
+      .get(cryptosUrl, { headers })
+      .then((response: any) => {
+        setCryptosDetail(response.data);
+      })
+      .catch((error: any) => {
+        console.error('Error fetching cryptos detail data: ', error);
       });
   }
 
@@ -51,7 +73,7 @@ export function useCryptoData() {
         setGlobalData(response.data.data);
       })
       .catch((error: any) => {
-        console.error("Error fetching global data: ", error);
+        console.error('Error fetching global data: ', error);
       });
   }
 
@@ -64,7 +86,7 @@ export function useCryptoData() {
         setTrendingData(response.data.coins);
       })
       .catch((error: any) => {
-        console.error("Error fetching trending data: ", error);
+        console.error('Error fetching trending data: ', error);
       });
   }
 
@@ -76,8 +98,16 @@ export function useCryptoData() {
 
   useEffect(() => {
     loadDefault();
-    getData();
+    // getData();
   }, []);
 
-  return { cryptos, globalData, trendingData, cryptoList, fetchCryptos };
+  return {
+    cryptos,
+    cryptosDetail,
+    globalData,
+    trendingData,
+    cryptoList,
+    fetchCryptos,
+    fetchCryptosById,
+  };
 }
