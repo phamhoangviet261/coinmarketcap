@@ -1,4 +1,5 @@
 import { nanoid } from "nanoid";
+import { Link } from "react-router-dom";
 
 type TrendingItem = {
   item: {
@@ -19,11 +20,9 @@ export const Trending = ({ cryptos }: { cryptos: TrendingItem[] }) => {
 
       <div className="space-y-1 overflow-y-auto max-h-[100%]">
         {cryptos.map((crypto) => (
-          <a
+          <Link
             key={nanoid()}
-            href={`https://www.coingecko.com/en/coins/${crypto.item.id}`}
-            target="_blank"
-            rel="noopener"
+            to={`/${crypto.item.id}`}
             className="flex items-center space-x-3 p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md transition-colors"
           >
             <span className="text-gray-500 dark:text-gray-400 min-w-[40px] text-left">
@@ -44,7 +43,7 @@ export const Trending = ({ cryptos }: { cryptos: TrendingItem[] }) => {
                 {crypto.item.symbol}
               </span>
             </div>
-          </a>
+          </Link>
         ))}
       </div>
     </div>

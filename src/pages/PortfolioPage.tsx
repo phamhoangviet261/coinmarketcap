@@ -20,6 +20,7 @@ import { ModalAddTransaction } from "@/components/Portfolio/ModalAddTransaction"
 import { ModalEditTransaction } from "@/components/Portfolio/ModalEditTransaction";
 import { ModalCreatePortfolio } from "@/components/Portfolio/ModalCreatePortfolio";
 import { useCryptoData } from "@/hooks/useCryptoData";
+import { Link } from "react-router-dom";
 
 export const PortfolioPage = () => {
   const { cryptos } = useCryptoData() as any;
@@ -64,8 +65,6 @@ export const PortfolioPage = () => {
       profitLoss: 100,
     },
   ]);
-
-  const coingeckoUrl = "https://www.coingecko.com/en/coins/";
 
   function sortPortfolioHoldings(holdings: any) {
     let sortedHoldings = [...holdings];
@@ -457,10 +456,8 @@ export const PortfolioPage = () => {
                       </td>
 
                       <td>
-                        <a
-                          href={`${coingeckoUrl}${crypto.id}`}
-                          target="_blank"
-                          rel="noopener"
+                        <Link
+                          to={`/${crypto.id}`}
                           className="flex items-center gap-3"
                         >
                           <img
@@ -474,7 +471,7 @@ export const PortfolioPage = () => {
                           <p className="text-sm font-semibold uppercase">
                             {crypto.symbol}
                           </p>
-                        </a>
+                        </Link>
                       </td>
 
                       <td className="text-right">

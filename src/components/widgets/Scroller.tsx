@@ -1,4 +1,5 @@
 import { Percent } from "@/components/ui/Percent";
+import { Link } from "react-router-dom";
 
 type CryptoData = {
   id: string;
@@ -9,7 +10,6 @@ type CryptoData = {
   price_change_percentage_24h_in_currency: number;
 };
 
-const coingeckoUrl = "https://www.coingecko.com/en/coins/";
 const currencies = [
   "bitcoin",
   "ethereum",
@@ -31,11 +31,9 @@ export const Scroller = ({ cryptos }: { cryptos: CryptoData[] }) => {
     <div className="w-full bg-white dark:bg-gray-800 py-1 border-t border-b border-gray-100 dark:border-gray-700 overflow-hidden">
       <div className="animate-marquee hover:pause-animation flex whitespace-nowrap">
         {[...cryptoData, ...cryptoData].map((crypto, index) => (
-          <a
+          <Link
             key={`${crypto.id}-${index}`}
-            href={`${coingeckoUrl}${crypto.id}`}
-            target="_blank"
-            rel="noopener"
+            to={`/${crypto.id}`}
             className="inline-flex items-center min-w-64 max-w-80 px-6 border-x border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors shrink-0"
           >
             <img
@@ -63,7 +61,7 @@ export const Scroller = ({ cryptos }: { cryptos: CryptoData[] }) => {
               </p>
               <Percent value={crypto.price_change_percentage_24h_in_currency} />
             </div>
-          </a>
+          </Link>
         ))}
       </div>
 

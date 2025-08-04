@@ -3,6 +3,7 @@ import { Footer } from "@/components/ApplicationShell/Footer";
 import { CryptosPage } from "@/pages/CryptosPage";
 import { PortfolioPage } from "@/pages/PortfolioPage";
 import { WidgetsPage } from "@/pages/WidgetsPage";
+import { CoinDetailPage } from "@/pages/CoinDetailPage";
 import { Route, Routes } from "react-router-dom";
 
 function ApplicationShell() {
@@ -15,6 +16,7 @@ function ApplicationShell() {
         <Route path="/" element={<CryptosPage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
         <Route path="/widgets" element={<WidgetsPage />} />
+        <Route path="/:coinId" element={<CoinDetailPage />} />
       </Routes>
 
       <Footer />

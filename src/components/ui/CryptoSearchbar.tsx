@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { nanoid } from "nanoid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@/assets/icons";
+import { Link } from "react-router-dom";
 
 export const CryptoSearchbar = (props: any) => {
   let cryptoList = props.data;
@@ -73,13 +74,9 @@ export const CryptoSearchbar = (props: any) => {
 
           {/* Results */}
           {filteredData.map((crypto: any) => (
-            <a
-              href={`https://www.coingecko.com/en/coins/${crypto.id}`}
-              key={nanoid()}
-              className="block"
-            >
+            <Link to={`/${crypto.id}`} key={nanoid()} className="block">
               <li
-                className="flex justify-between items-center rounded py-1.5 px-2 
+                className="flex justify-between items-center rounded py-1.5 px-2
                   text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
                 <div className="flex items-center gap-2">
@@ -90,7 +87,7 @@ export const CryptoSearchbar = (props: any) => {
                 </div>
                 <p>#{crypto.market_cap_rank}</p>
               </li>
-            </a>
+            </Link>
           ))}
         </ul>
       )}
