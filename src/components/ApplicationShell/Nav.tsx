@@ -1,13 +1,19 @@
-import { faGithub, faBell, faUser, faMagnifyingGlass, faBars } from "@/assets/icons";
-import { CryptoSearchbar } from "@/components/ui/CryptoSearchbar";
-import { NavbarOverlay } from "@/components/ApplicationShell/NavbarOverlay";
-import { Percent } from "@/components/ui/Percent";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRef } from "react";
-import { Link } from "react-router-dom";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import logo from "/images/logo.png";
-import { useCryptoData } from "@/hooks/useCryptoData";
+import {
+  faGithub,
+  faBell,
+  faUser,
+  faMagnifyingGlass,
+  faBars,
+} from '@/assets/icons';
+import { CryptoSearchbar } from '@/components/ui/CryptoSearchbar';
+import { NavbarOverlay } from '@/components/ApplicationShell/NavbarOverlay';
+import { Percent } from '@/components/ui/Percent';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import logo from '/images/logo.png';
+import { useCryptoData } from '@/hooks/useCryptoData';
 
 export const Nav = () => {
   const { globalData, cryptoList } = useCryptoData();
@@ -15,7 +21,7 @@ export const Nav = () => {
   const overlayRef: any = useRef(null);
 
   return (
-    <nav className="pt-4 flex flex-col top-0 z-10 w-full max-w-[1600px] mx-auto">
+    <nav className="pt-4 flex flex-col top-0 z-10 w-full max-w-[2000px] mx-auto">
       <NavbarOverlay ref={overlayRef} />
 
       {/* Sub Header */}
@@ -98,7 +104,7 @@ export const Nav = () => {
             <ThemeToggle />
 
             <a
-              href="https://github.com/mrmendoza171/cryptotracker"
+              href="https://github.com/phamhoangviet261/coinmarketcap"
               target="_blank"
               rel="noopener"
               className="flex items-center justify-center w-10 h-10 rounded-lg
@@ -189,7 +195,7 @@ export const Nav = () => {
           </div>
 
           <a
-            href="https://github.com/mrmendoza171/cryptotracker"
+            href="https://github.com/phamhoangviet261/coinmarketcap"
             target="_blank"
             rel="noopener"
             className="flex items-center justify-center w-8 h-8 rounded-lg
@@ -227,4 +233,4 @@ export const Nav = () => {
       </div>
     </nav>
   );
-}
+};

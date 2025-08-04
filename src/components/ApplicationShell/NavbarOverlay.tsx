@@ -1,10 +1,10 @@
-import { faGithub, faLinkedin, faXmark } from "@/assets/icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { forwardRef, useImperativeHandle, useState } from "react";
-import { Link } from "react-router-dom";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import logo from "/images/logo.png";
-import { createPortal } from "react-dom";
+import { faGithub, faLinkedin, faXmark } from '@/assets/icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { forwardRef, useImperativeHandle, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import logo from '/images/logo.png';
+import { createPortal } from 'react-dom';
 export const NavbarOverlay = forwardRef((props, ref) => {
   const [isToggled, setIsToggled] = useState(false);
 
@@ -12,11 +12,11 @@ export const NavbarOverlay = forwardRef((props, ref) => {
     setIsToggled(!isToggled);
 
     if (!isToggled) {
-      document.body.style.overflow = "hidden";
-      document.body.style.touchAction = "none";
+      document.body.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
     } else {
-      document.body.style.overflow = "auto";
-      document.body.style.touchAction = "auto";
+      document.body.style.overflow = 'auto';
+      document.body.style.touchAction = 'auto';
     }
   };
 
@@ -28,7 +28,7 @@ export const NavbarOverlay = forwardRef((props, ref) => {
     <div
       className="flex flex-col justify-start text-base h-screen fixed left-0 top-0 z-[999999999] m-0 
         transition-all duration-200 overflow-hidden whitespace-nowrap bg-white dark:bg-gray-900"
-      style={{ width: isToggled ? "100vw" : "0px" }}
+      style={{ width: isToggled ? '100vw' : '0px' }}
     >
       <div className="p-6">
         {/* Header */}
@@ -47,7 +47,7 @@ export const NavbarOverlay = forwardRef((props, ref) => {
             onClick={toggleOverlay}
             className="outline-none border-none bg-transparent text-base text-gray-500 dark:text-gray-400"
           >
-            <FontAwesomeIcon icon={faXmark} className="size-6"/>
+            <FontAwesomeIcon icon={faXmark} className="size-6" />
           </button>
         </div>
 
@@ -148,7 +148,7 @@ export const NavbarOverlay = forwardRef((props, ref) => {
           <div className="flex items-center gap-2">
             <a
               className="hover:text-gray-900 dark:hover:text-gray-100"
-              href="https://github.com/mrmendoza171/cryptotracker"
+              href="https://github.com/phamhoangviet261/coinmarketcap"
               target="_blank"
               rel="noopener"
             >
@@ -171,7 +171,7 @@ export const NavbarOverlay = forwardRef((props, ref) => {
           dark:text-gray-400 mt-5"
         >
           <a
-            href="https://github.com/mrmendoza171/cryptotracker"
+            href="https://github.com/phamhoangviet261/coinmarketcap"
             target="_blank"
             rel="noopener"
             className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
@@ -191,8 +191,5 @@ export const NavbarOverlay = forwardRef((props, ref) => {
     </div>
   );
 
-
-    return createPortal(overlayContent, document.body);
-
+  return createPortal(overlayContent, document.body);
 });
-

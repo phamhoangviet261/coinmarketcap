@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   return (
@@ -58,7 +58,7 @@ export const Footer = () => {
               <a
                 className="text-gray-500 dark:text-gray-400 text-sm hover:text-orange-500 
                   transition-colors duration-200"
-                href="https://github.com/mrmendoza-dev/cryptotracker"
+                href="https://github.com/phamhoangviet261/coinmarketcap"
                 target="_blank"
                 rel="noopener"
               >
@@ -69,7 +69,7 @@ export const Footer = () => {
               <a
                 className="text-gray-500 dark:text-gray-400 text-sm hover:text-orange-500 
                   transition-colors duration-200"
-                href="https://github.com/mrmendoza-dev"
+                href="https://github.com/phamhoangviet261/coinmarketcap"
               >
                 About
               </a>
@@ -113,4 +113,4 @@ export const Footer = () => {
       </div>
     </footer>
   );
-}
+};
