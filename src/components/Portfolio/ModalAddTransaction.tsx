@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { nanoid } from "nanoid";
 
 export const ModalAddTransaction = ({
   cryptos,
@@ -63,7 +62,7 @@ export const ModalAddTransaction = ({
       <div className="flex bg-gray-100 dark:bg-gray-800 p-1 rounded-lg">
         {txTypes.map((tab) => (
           <button
-            key={nanoid()}
+            key={tab}
             className={`
               flex-1 py-2.5 px-4 rounded-md text-sm font-semibold transition-colors
               ${
@@ -95,7 +94,7 @@ export const ModalAddTransaction = ({
           }}
         >
           {cryptos.map((crypto: any) => (
-            <option key={nanoid()} value={crypto.id}>
+            <option key={crypto.id} value={crypto.id}>
               {crypto.name}
             </option>
           ))}

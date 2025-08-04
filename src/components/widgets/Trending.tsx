@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 
 type TrendingItem = {
   item: {
@@ -20,7 +19,7 @@ export const Trending = ({ cryptos }: { cryptos: TrendingItem[] }) => {
       <div className="space-y-1 overflow-y-auto max-h-[100%]">
         {cryptos.map((crypto) => (
           <a
-            key={nanoid()}
+            key={crypto.item.id}
             href={`https://www.coingecko.com/en/coins/${crypto.item.id}`}
             target="_blank"
             rel="noopener"

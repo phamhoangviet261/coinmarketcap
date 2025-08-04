@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import { CryptoCard } from "@/components/widgets/CryptoCard";
 import { Dominance } from "@/components/widgets/Dominance";
 import { EthGasTracker } from "@/components/widgets/EthGasTracker";
@@ -17,7 +16,7 @@ export const WidgetsPage = () => {
       <div className="flex flex-col gap-4 p-4">
         <div className="flex justify-center flex-wrap gap-4">
           {cryptos.slice(0, 5).map((crypto: any) => (
-            <CryptoCard crypto={crypto} key={nanoid()} />
+            <CryptoCard crypto={crypto} key={crypto.id} />
           ))}
         </div>
 

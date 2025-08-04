@@ -1,5 +1,4 @@
-import React, { useState, useRef } from "react";
-import { nanoid } from "nanoid";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@/assets/icons";
 
@@ -75,7 +74,7 @@ export const CryptoSearchbar = (props: any) => {
           {filteredData.map((crypto: any) => (
             <a
               href={`https://www.coingecko.com/en/coins/${crypto.id}`}
-              key={nanoid()}
+              key={crypto.id}
               className="block"
             >
               <li

@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Percent } from "@/components/ui/Percent";
 import { Private } from "@/components/ui/Private";
-import { nanoid } from "nanoid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faWallet,
@@ -342,7 +341,7 @@ export const PortfolioPage = () => {
                 const percent = getPortfolioProportion(holding) * 100;
                 return (
                   <div
-                    key={nanoid()}
+                    key={holding.id}
                     className="h-3 relative first:rounded-l-lg last:rounded-r-lg group"
                     style={{
                       width: `${percent}%`,
@@ -449,7 +448,7 @@ export const PortfolioPage = () => {
 
                   return (
                     <tr
-                      key={nanoid()}
+                      key={held.id}
                       className="h-[4.2em] border-b border-gray-100 dark:border-gray-700 text-sm text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800"
                     >
                       <td className="text-center font-semibold">

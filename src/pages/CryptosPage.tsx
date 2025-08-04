@@ -1,5 +1,4 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
 import { Sparklines, SparklinesLine } from "react-sparklines";
 import { Percent } from "@/components/ui/Percent";
@@ -49,7 +48,7 @@ export const CryptosPage = () => {
 
     return pages.map((page) => (
       <button
-        key={nanoid()}
+        key={page}
         className={`
           px-3 py-2 font-medium border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-100
           ${page === pageNum ? "bg-gray-100 dark:bg-gray-700" : "bg-inherit text-gray-700 dark:text-gray-400"}
