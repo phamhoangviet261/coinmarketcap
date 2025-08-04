@@ -6,9 +6,9 @@ import { Percent } from "@/components/ui/Percent";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import { faStarFilled, faStarEmpty, faAngleLeft, faAngleRight } from "@/assets/icons";
 import { useCryptoData } from "@/hooks/useCryptoData";
+import { Link } from "react-router-dom";
 
 export const CryptosPage = () => {
-  const coingeckoUrl = "https://www.coingecko.com/en/coins/";
   const [pageNum, setPageNum] = useState(1);
   const [favorites, setFavorites] = useLocalStorage("favorites", []);
   const { cryptos, fetchCryptos } = useCryptoData();
@@ -112,12 +112,7 @@ export const CryptosPage = () => {
                 </td>
 
                 <td className="px-1">
-                  <a
-                    href={`${coingeckoUrl}${crypto.id}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex gap-3 items-center"
-                  >
+                  <Link to={`/${crypto.id}`} className="flex gap-3 items-center">
                     <img
                       className="rounded-full h-[30px] w-[30px]"
                       src={crypto.image}
@@ -129,7 +124,7 @@ export const CryptosPage = () => {
                     <p className="text-sm font-semibold uppercase">
                       {crypto.symbol}
                     </p>
-                  </a>
+                  </Link>
                 </td>
 
                 <td className="text-right px-1">
