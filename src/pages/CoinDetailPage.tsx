@@ -2,7 +2,12 @@ import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useCryptoData } from '@/hooks/useCryptoData';
 import type { TCoinDetail } from '@/type';
-import { createChart, ColorType, LineSeries, UTCTimestamp } from 'lightweight-charts';
+import {
+  createChart,
+  ColorType,
+  BaselineSeries,
+  UTCTimestamp,
+} from 'lightweight-charts';
 
 export const CoinDetailPage = () => {
   const { coinId } = useParams();
@@ -44,8 +49,16 @@ export const CoinDetailPage = () => {
         horzLines: { color: '#e0e0e0' },
       },
     });
-    const lineSeries = chart.addSeries(LineSeries, { color: '#8884d8' });
-    lineSeries.setData(sparklineData);
+    const baselineSeries = chart.addSeries(BaselineSeries, {
+      baseValue: { type: 'price', price: sparklineData[0]?.value ?? 0 },
+      topLineColor: 'rgba(38, 166, 154, 1)',
+      topFillColor1: 'rgba(38, 166, 154, 0.4)',
+      topFillColor2: 'rgba(38, 166, 154, 0.05)',
+      bottomLineColor: 'rgba(239, 83, 80, 1)',
+      bottomFillColor1: 'rgba(239, 83, 80, 0.05)',
+      bottomFillColor2: 'rgba(239, 83, 80, 0.4)',
+    });
+    baselineSeries.setData(sparklineData);
 
     const handleResize = () => {
       chart.applyOptions({ width: chartContainerRef.current!.clientWidth });
