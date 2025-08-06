@@ -13,30 +13,30 @@ export const CoinDetailPage = () => {
   const { coinId } = useParams();
   const { cryptosDetail, fetchCryptosById } = useCryptoData();
 
-  useEffect(() => {
-    if (coinId) {
-      fetchCryptosById(coinId);
-    }
-  }, [coinId]);
-
-  if (!cryptosDetail) {
-    return <div className="p-4">Loading...</div>;
-  }
-
-  const detail = cryptosDetail as TCoinDetail;
+  const chartContainerRef = useRef<HTMLDivElement>(null);
   const now = Math.floor(Date.now() / 1000);
   const sparklineData =
-    detail.market_data?.sparkline_7d?.price?.map(
+    cryptosDetail?.market_data?.sparkline_7d?.price?.map(
       (p, idx, arr) =>
         ({
           time: (now - (arr.length - idx) * 3600) as UTCTimestamp,
           value: p,
         }) as const,
     ) || [];
-  const chartContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!chartContainerRef.current) return;
+    if (coinId) {
+      fetchCryptosById(coinId);
+    }
+  }, [coinId]);
+
+  useEffect(() => {
+    if (
+      !cryptosDetail ||
+      sparklineData.length === 0 ||
+      !chartContainerRef.current
+    )
+      return;
     const chart = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,
       height: 300,
@@ -68,7 +68,13 @@ export const CoinDetailPage = () => {
       window.removeEventListener('resize', handleResize);
       chart.remove();
     };
-  }, [sparklineData]);
+  }, [cryptosDetail, sparklineData]);
+
+  if (!cryptosDetail) {
+    return <div className="p-4">Loading...</div>;
+  }
+
+  const detail = cryptosDetail as TCoinDetail;
 
   return (
     <div className="p-4 max-w-7xl mx-auto flex gap-4">
