@@ -24,129 +24,10 @@ export const Nav = () => {
     <nav className="pt-4 flex flex-col top-0 z-10 w-full mx-auto">
       <NavbarOverlay ref={overlayRef} />
 
-      {/* Sub Header */}
-      <div
-        className="flex justify-between items-center px-8 pt-2 pb-4 flex-wrap text-sm font-semibold 
-        border-b border-gray-100 dark:border-gray-700 order-0 xl:order-first"
-      >
-        {/* Crypto Stats */}
-        <div className="flex items-center gap-5 whitespace-nowrap w-fit overflow-auto">
-          <div className="flex gap-1.5">
-            <p>Coins:</p>
-            <Link className="text-blue-500" to="/">
-              {Number(globalData.active_cryptocurrencies).toLocaleString()}
-            </Link>
-          </div>
-
-          <div className="flex gap-1.5">
-            <p>Exchanges:</p>
-            <Link className="text-blue-500" to="/">
-              {Number(globalData.markets).toLocaleString()}
-            </Link>
-          </div>
-
-          <div className="flex gap-1.5">
-            <p>Market Cap:</p>
-            <Link className="text-blue-500" to="/">
-              <div className="flex gap-1.5">
-                <p>
-                  $
-                  {globalData.total_market_cap.usd.toLocaleString(undefined, {
-                    maximumFractionDigits: 0,
-                  })}
-                </p>
-                <Percent
-                  value={globalData.market_cap_change_percentage_24h_usd}
-                />
-              </div>
-            </Link>
-          </div>
-
-          <div className="flex gap-1.5">
-            <p>24h Vol:</p>
-            <Link className="text-blue-500" to="/">
-              $
-              {Number(globalData.total_volume.usd).toLocaleString(undefined, {
-                maximumFractionDigits: 0,
-              })}
-            </Link>
-          </div>
-
-          <div className="flex gap-1.5">
-            <p>Dominance:</p>
-            <Link className="text-blue-500" to="/">
-              <div className="flex gap-2">
-                <p>BTC {globalData.market_cap_percentage.btc.toFixed(1)}%</p>
-                <p>ETH {globalData.market_cap_percentage.eth.toFixed(1)}%</p>
-              </div>
-            </Link>
-          </div>
-        </div>
-
-        {/* Controls */}
-        <div className="hidden xl:flex items-center">
-          <select
-            className="py-1.5 px-2 text-sm outline-none border-none bg-transparent 
-            text-gray-500 dark:text-gray-400 cursor-pointer rounded-lg
-            hover:bg-gray-100 dark:hover:bg-gray-800"
-          >
-            <option>English</option>
-          </select>
-          <select
-            className="py-1.5 px-2 text-sm outline-none border-none bg-transparent 
-            text-gray-500 dark:text-gray-400 cursor-pointer rounded-lg
-            hover:bg-gray-100 dark:hover:bg-gray-800"
-          >
-            <option>USD</option>
-          </select>
-
-          <div className="flex items-center gap-1 ml-3">
-            <ThemeToggle />
-
-            <a
-              href="https://github.com/phamhoangviet261/coinmarketcap"
-              target="_blank"
-              rel="noopener"
-              className="flex items-center justify-center w-10 h-10 rounded-lg
-          text-gray-500 dark:text-gray-400 
-          hover:bg-gray-100 dark:hover:bg-gray-800
-          focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700
-          transition-colors"
-            >
-              <FontAwesomeIcon
-                icon={faGithub}
-                title="GitHub"
-                className="text-xl"
-              />
-            </a>
-
-            <button
-              className="flex items-center justify-center w-10 h-10 rounded-lg
-          text-gray-500 dark:text-gray-400 
-          hover:bg-gray-100 dark:hover:bg-gray-800
-          focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700
-          transition-colors"
-            >
-              <FontAwesomeIcon icon={faBell} className="text-xl" />
-            </button>
-
-            <button
-              className="flex items-center justify-center w-10 h-10 rounded-lg
-          text-gray-500 dark:text-gray-400 
-          hover:bg-gray-100 dark:hover:bg-gray-800
-          focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700
-          transition-colors"
-            >
-              <FontAwesomeIcon icon={faUser} className="text-xl" />
-            </button>
-          </div>
-        </div>
-      </div>
-
       {/* Main Header */}
       <div
         className="flex justify-between items-center border-b border-gray-100 dark:border-gray-700 
-        py-2 px-8 order-first xl:order-1"
+        py-2 px-8"
       >
         <div className="flex items-center">
           <Link className="flex items-center gap-1 select-none" to="/">
@@ -227,8 +108,127 @@ export const Nav = () => {
         </div>
 
         {/* Desktop Search */}
-        <div className="hidden xl:block">
+        <div className="hidden xl:flex">
           <CryptoSearchbar className="nav-search" data={cryptoList} />
+
+          {/* Controls */}
+          <div className="hidden xl:flex items-center">
+            <select
+              className="py-1.5 px-2 text-sm outline-none border-none bg-transparent 
+            text-gray-500 dark:text-gray-400 cursor-pointer rounded-lg
+            hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              <option>English</option>
+            </select>
+            <select
+              className="py-1.5 px-2 text-sm outline-none border-none bg-transparent 
+            text-gray-500 dark:text-gray-400 cursor-pointer rounded-lg
+            hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              <option>USD</option>
+            </select>
+
+            <div className="flex items-center gap-1 ml-3">
+              <ThemeToggle />
+
+              <a
+                href="https://github.com/phamhoangviet261/coinmarketcap"
+                target="_blank"
+                rel="noopener"
+                className="flex items-center justify-center w-10 h-10 rounded-lg
+          text-gray-500 dark:text-gray-400 
+          hover:bg-gray-100 dark:hover:bg-gray-800
+          focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700
+          transition-colors"
+              >
+                <FontAwesomeIcon
+                  icon={faGithub}
+                  title="GitHub"
+                  className="text-xl"
+                />
+              </a>
+
+              <button
+                className="flex items-center justify-center w-10 h-10 rounded-lg
+          text-gray-500 dark:text-gray-400 
+          hover:bg-gray-100 dark:hover:bg-gray-800
+          focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700
+          transition-colors"
+              >
+                <FontAwesomeIcon icon={faBell} className="text-xl" />
+              </button>
+
+              <button
+                className="flex items-center justify-center w-10 h-10 rounded-lg
+          text-gray-500 dark:text-gray-400 
+          hover:bg-gray-100 dark:hover:bg-gray-800
+          focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700
+          transition-colors"
+              >
+                <FontAwesomeIcon icon={faUser} className="text-xl" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Sub Header */}
+      <div
+        className="flex justify-between items-center px-8 pt-2 pb-4 flex-wrap text-sm font-semibold 
+        border-b border-gray-100 dark:border-gray-700"
+      >
+        {/* Crypto Stats */}
+        <div className="flex items-center gap-5 whitespace-nowrap w-fit overflow-auto">
+          <div className="flex gap-1.5">
+            <p>Coins:</p>
+            <Link className="text-blue-500" to="/">
+              {Number(globalData.active_cryptocurrencies).toLocaleString()}
+            </Link>
+          </div>
+
+          <div className="flex gap-1.5">
+            <p>Exchanges:</p>
+            <Link className="text-blue-500" to="/">
+              {Number(globalData.markets).toLocaleString()}
+            </Link>
+          </div>
+
+          <div className="flex gap-1.5">
+            <p>Market Cap:</p>
+            <Link className="text-blue-500" to="/">
+              <div className="flex gap-1.5">
+                <p>
+                  $
+                  {globalData.total_market_cap.usd.toLocaleString(undefined, {
+                    maximumFractionDigits: 0,
+                  })}
+                </p>
+                <Percent
+                  value={globalData.market_cap_change_percentage_24h_usd}
+                />
+              </div>
+            </Link>
+          </div>
+
+          <div className="flex gap-1.5">
+            <p>24h Vol:</p>
+            <Link className="text-blue-500" to="/">
+              $
+              {Number(globalData.total_volume.usd).toLocaleString(undefined, {
+                maximumFractionDigits: 0,
+              })}
+            </Link>
+          </div>
+
+          <div className="flex gap-1.5">
+            <p>Dominance:</p>
+            <Link className="text-blue-500" to="/">
+              <div className="flex gap-2">
+                <p>BTC {globalData.market_cap_percentage.btc.toFixed(1)}%</p>
+                <p>ETH {globalData.market_cap_percentage.eth.toFixed(1)}%</p>
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
     </nav>
