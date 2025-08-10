@@ -5,11 +5,11 @@ import defaultCryptoListData from '@/data/cryptoListData.json';
 
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { TCoinDetail } from '@/type';
+import { CoinDetail } from '@/type';
 
 export function useCryptoData() {
   const [cryptos, setCryptos] = useState(defaultCryptoData);
-  const [cryptosDetail, setCryptosDetail] = useState<TCoinDetail | undefined>(
+  const [cryptosDetail, setCryptosDetail] = useState<CoinDetail | undefined>(
     undefined
   );
   const [globalData, setGlobalData] = useState(defaultGlobalData.data);

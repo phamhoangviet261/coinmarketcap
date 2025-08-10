@@ -1,5 +1,5 @@
-import { Percent } from "@/components/ui/Percent";
-import { Sparklines, SparklinesLine } from "react-sparklines";
+import { Percent } from '@/components/ui/Percent';
+import { Sparklines, SparklinesLine } from 'react-sparklines';
 
 export const CryptoCard = ({ crypto }: { crypto: any }) => {
   if (!crypto) return null;
@@ -34,16 +34,7 @@ export const CryptoCard = ({ crypto }: { crypto: any }) => {
             </div>
           </div>
         </div>
-
-        <div className="mt-5">
-          <Sparklines data={crypto.sparkline_in_7d.price} margin={0}>
-            <SparklinesLine
-              color={isNegativePrice ? "#ef4444" : "#10b981"} // text-red-500 : text-emerald-500
-              style={{ fill: "none", strokeWidth: 3 }}
-            />
-          </Sparklines>
-        </div>
       </div>
     </div>
   );
-}
+};

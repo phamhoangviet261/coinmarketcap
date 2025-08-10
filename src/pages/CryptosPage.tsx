@@ -1,16 +1,21 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { nanoid } from "nanoid";
-import { useEffect, useState } from "react";
-import { Sparklines, SparklinesLine } from "react-sparklines";
-import { Percent } from "@/components/ui/Percent";
-import useLocalStorage from "@/hooks/useLocalStorage";
-import { faStarFilled, faStarEmpty, faAngleLeft, faAngleRight } from "@/assets/icons";
-import { useCryptoData } from "@/hooks/useCryptoData";
-import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { nanoid } from 'nanoid';
+import { useEffect, useState } from 'react';
+import { Sparklines, SparklinesLine } from 'react-sparklines';
+import { Percent } from '@/components/ui/Percent';
+import useLocalStorage from '@/hooks/useLocalStorage';
+import {
+  faStarFilled,
+  faStarEmpty,
+  faAngleLeft,
+  faAngleRight,
+} from '@/assets/icons';
+import { useCryptoData } from '@/hooks/useCryptoData';
+import { Link } from 'react-router-dom';
 
 export const CryptosPage = () => {
   const [pageNum, setPageNum] = useState(1);
-  const [favorites, setFavorites] = useLocalStorage("favorites", []);
+  const [favorites, setFavorites] = useLocalStorage('favorites', []);
   const { cryptos, fetchCryptos } = useCryptoData();
 
   function favoriteCrypto(crypto: any) {
@@ -52,7 +57,11 @@ export const CryptosPage = () => {
         key={nanoid()}
         className={`
           px-3 py-2 font-medium border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-100
-          ${page === pageNum ? "bg-gray-100 dark:bg-gray-700" : "bg-inherit text-gray-700 dark:text-gray-400"}
+          ${
+            page === pageNum
+              ? 'bg-gray-100 dark:bg-gray-700'
+              : 'bg-inherit text-gray-700 dark:text-gray-400'
+          }
         `}
         onClick={() => goToPage(page)}
       >
@@ -103,7 +112,7 @@ export const CryptosPage = () => {
                             : faStarEmpty
                         }
                         className={
-                          favorites.includes(crypto.id) ? "text-[#ffcc66]" : ""
+                          favorites.includes(crypto.id) ? 'text-[#ffcc66]' : ''
                         }
                       />
                     </button>
@@ -112,7 +121,10 @@ export const CryptosPage = () => {
                 </td>
 
                 <td className="px-1">
-                  <Link to={`/${crypto.id}`} className="flex gap-3 items-center">
+                  <Link
+                    to={`/${crypto.id}`}
+                    className="flex gap-3 items-center"
+                  >
                     <img
                       className="rounded-full h-[30px] w-[30px]"
                       src={crypto.image}
@@ -162,22 +174,6 @@ export const CryptosPage = () => {
                 <td className="text-right px-1">
                   ${crypto.market_cap.toLocaleString()}
                 </td>
-
-                <td className="text-center px-1">
-                  <Sparklines data={crypto.sparkline_in_7d.price} margin={0}>
-                    <SparklinesLine
-                      color={
-                        crypto.sparkline_in_7d.price[0] >
-                        crypto.sparkline_in_7d.price[
-                          crypto.sparkline_in_7d.price.length - 1
-                        ]
-                          ? "#ef4444" // text-red-500
-                          : "#10b981" // text-emerald-500
-                      }
-                      style={{ fill: "none", strokeWidth: 3 }}
-                    />
-                  </Sparklines>
-                </td>
               </tr>
             ))}
           </tbody>
@@ -209,4 +205,4 @@ export const CryptosPage = () => {
       </div>
     </div>
   );
-}
+};

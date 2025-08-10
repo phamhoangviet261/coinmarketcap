@@ -24,7 +24,6 @@ export const Nav = () => {
     <nav className="pt-4 flex flex-col top-0 z-10 w-full mx-auto">
       <NavbarOverlay ref={overlayRef} />
 
-      {/* Main Header */}
       <div
         className="flex justify-between items-center border-b border-gray-100 dark:border-gray-700 
         py-2 px-8"
@@ -59,7 +58,6 @@ export const Nav = () => {
           </div>
         </div>
 
-        {/* Mobile Controls */}
         <div className="flex xl:hidden items-center gap-2 w-fit max-w-[200px] text-gray-500 dark:text-gray-400">
           <button
             className="flex items-center justify-center w-8 h-8 rounded-lg
@@ -107,11 +105,9 @@ export const Nav = () => {
           </button>
         </div>
 
-        {/* Desktop Search */}
         <div className="hidden xl:flex">
           <CryptoSearchbar className="nav-search" data={cryptoList} />
 
-          {/* Controls */}
           <div className="hidden xl:flex items-center">
             <select
               className="py-1.5 px-2 text-sm outline-none border-none bg-transparent 
